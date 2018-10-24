@@ -1,19 +1,31 @@
+/**
+ * MAKE SURE TO INSTALL THE FOLLOWING DEPENDENCIES: 
+ * express
+ * body-parser
+ * mysql
+ * cryptr
+ * jsonwebtoken
+ */
 var express=require("express");
 var bodyParser=require('body-parser');
  
-var con = require('./config');
+//Con is going to the config file 
+var con  = require('./config');
 var app = express();
  
-var authenticateController=require('./controllers/authenticate-controller');
-var registerController=require('./controllers/register-controller');
+var authenticateController=require('./authenticate-controller');
+var registerController=require('./register-controller');
  
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//default route or main directory 
 app.get('/', function (req, res) {  
    res.sendFile( __dirname + "/" + "index.html" );  
 })  
  
+//route to the login page of the form
 app.get('/login.html', function (req, res) {  
    res.sendFile( __dirname + "/" + "login.html" );  
 })  

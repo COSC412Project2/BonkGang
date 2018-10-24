@@ -1,12 +1,16 @@
+//This varibale uses cryptyr module for encrypting the users password
 var Cryptr = require('cryptr');
 cryptr = new Cryptr('myTotalySecretKey');
  
-var connection = require('./../config');
+//uses the config file and getting the route for it
+var connection = require('./config');
+
+//making sure the user has an account with email and password
 module.exports.authenticate=function(req,res){
     var email=req.body.email;
     var password=req.body.password;
    
-   
+   //query that checks for the uers email and password and they are both valid within the database 
     connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
       if (error) {
           res.json({
