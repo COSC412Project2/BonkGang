@@ -20,6 +20,20 @@ h2{
     margin-top: 30px;
 }
 
+/*Upper left logo*/
+#logoBox {
+    float: left;
+}
+
+#logoBox img{
+
+}
+
+#logoBox p{
+    text-align: center;
+    font-size: 20px;
+    margin: 0;
+}
 
 /*Log in box styles*/
 
@@ -28,7 +42,7 @@ h2{
     /*center the box*/
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 100px;
 
     /*set size of box*/
     height: 400px;
@@ -36,15 +50,26 @@ h2{
 
     /*box appearance*/
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
+#welcome {
+    font-size: 30px;
+    padding-top: 20px;
+    margin: 0;
+}
 
 .formElementWrapper{
     margin-bottom: 18px;
     text-align: left;
     width: 100%;
     font-size: 22px;
+}
+
+#forgot{
+    float: left;
+    margin:2px 0 0 0;
+    padding: 0;
 }
 
 #loginForm{
@@ -99,13 +124,6 @@ register link and forgot password link*/
     text-decoration: unset;
 }
 
-#left{
-    float: left;
-}
-
-#right{
-    float: right;
-}
 
 #output{
     width: 80%;

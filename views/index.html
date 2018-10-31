@@ -16,65 +16,69 @@
     <body>
         <section>
             <div class="container">
+                <div id="logoBox">
+                    <img src="../img/b.png">
+                    <p>bonk gang, baby</p>
+                </div>
                 <div id="loginBox">
+                    <p id="welcome">welcome back, baby</p>
                     <!--Back-end guys will use this form to get user input-->
-                    <form id="loginForm">
+                    <form id="loginForm" onsubmit="return false">
                         <div class="formElementWrapper">
                             <input id="f0" class="formField" type="text" name="email" placeholder="email"/>
                         </div>
                         <div class="formElementWrapper">
                             <input id="f1" class="formField" type="password" name="password" placeholder="password"/>
                         </div>
+                        <a href id="forgot">forgot your password?</a>
                         <input id="submitButton" type="submit" value="login"/>
                     </form>
                     <!--sction below submit button-->
                     <div id="help">
-                        <a href id="left">forgot your password?</a>
-                        <a href id="right">don't have an account?</a>
-                    </div>
-                    <div id="console">
-                       <p>Server Responses here:</p> 
+                        <a href="/register">don't have an account? Register!</a>
                     </div>
                 </div>
             </div>
         </section>
     </body>
     <script>
+        //script to send request to server and handle response
         var formEmail = document.getElementById('f0');
         var formPassword = document.getElementById('f1');
         var con = document.getElementById("console");
 
+        //event listener for submit button click
         document.getElementById('submitButton').addEventListener('click', function() {
             var request = new XMLHttpRequest();
-            request.open('POST', '/auth', true);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
+            
             request.onload = function() {
-                console.log(this.response);
                 if (this.status >= 200 && this.status < 400 && this.readyState == 4) {
                     // Success!
-                    var resp = this.response;
+                    var resp = JSON.parse(this.response);
                     con.innerHTML += "<p>" + resp.message + "</p><br>";
-                    console.log(resp);
-                // nextFunctionExample(response);
                 } else {
                     // We reached our target server, but it returned an error like password incorrect
-                    con.innerHTML += "<p>" + resp.error + "</p><br>";
+                    con.innerHTML += "<p>" + this.response.error + "</p><br>";
                     console.log(this.response);
                 }
             };
 
-            request.onerror = function() {
+            request.onerror = function(error) {
                 // There was a connection error of some sort like server not found
+                console.log("request error: " + error);
             };
 
+            //open request
+            request.open('POST', '/auth', true);
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            //data to send
             var dataToSend = JSON.stringify({
                 email: formEmail.value,
                 password: formPassword.value
             });
-
+            //send it
             request.send(dataToSend);
         });
-
     </script>
 </html>

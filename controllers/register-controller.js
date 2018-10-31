@@ -1,32 +1,35 @@
-var Cryptr = require('cryptr');
-//var express=require("express");
 var mysql_query = require('../modules/query');
-// cryptr = new Cryptr('myTotalySecretKey');
- 
+var bcrypt = require('bcryptjs');
 //sets the register time stamp and encrypts password 
-module.exports.register=function(req,res){
+module.exports.register=function(req,res, callback){
+  //date for timestamp
   var today = new Date();
-  var encryptedString = cryptr.encrypt(req.body.password);
-  var users={
+
+  //hash the password before storing
+  var encryptedString = bcrypt.hashSync(req.body.password);
+
+  //SET to be inserted into mysql
+  var user={
     "name":req.body.name,
     "email":req.body.email,
     "password":encryptedString,
-    "created_at":today,
-    "updated_at":today
+    "created_at":today.getTime(),
+    "updated_at":today.getTime()
   }
-    //query used to insert a new user into the database 
-    mysql_query('INSERT INTO users SET ?',users, function (error, results, fields) {
-      if (error) {
-        res.json({
-            status:false,
-            message:'there are some error with query'
-        })
-      }else{
-          res.json({
-            status:true,
-            data:results,
-            message:'user registered sucessfully'
-        })
-      }
-    });
+
+  //timestamp log of regstartion attempt
+  console.log(date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() +
+  '.' + date.getMilliseconds() + ' ' + date.toDateString() + ": New registration attempt:");
+  console.log("name:\t\t" + user.name);
+  console.log("email:\t\t" + user.email);
+  console.log("hashed password:\t" + user.password);
+
+  //query used to insert a new user into the database 
+   mysql_query('INSERT INTO users SET ?',user, function (error, results) {
+    if (error) {
+      callback(0, error);
+    }else{
+      callback(1, results);
+    }
+  });
 }
