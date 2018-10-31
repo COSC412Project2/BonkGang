@@ -1,6 +1,6 @@
 var Cryptr = require('cryptr');
 //var express=require("express");
-var connection = require('./config');
+var mysql_query = require('../modules/query');
 // cryptr = new Cryptr('myTotalySecretKey');
  
 //sets the register time stamp and encrypts password 
@@ -15,7 +15,7 @@ module.exports.register=function(req,res){
     "updated_at":today
   }
     //query used to insert a new user into the database 
-    connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
+    mysql_query('INSERT INTO users SET ?',users, function (error, results, fields) {
       if (error) {
         res.json({
             status:false,

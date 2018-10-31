@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+    <!-- Meta Data -->
+    <head>
+        <title>Bonk Gang | Log-in</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Bonk Gang Log-in">
+        <meta name="author" content="Bonk Gang">
+        <link rel="stylesheet" type="text/css" href="../styles/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    </head>
+
+    <!--Page Contents-->
+    <body>
+        <section>
+            <div class="container">
+                <div id="loginBox">
+                    <!--Back-end guys will use this form to get user input-->
+                    <form id="loginForm">
+                        <div class="formElementWrapper">
+                            <input id="f0" class="formField" type="text" name="email" placeholder="email"/>
+                        </div>
+                        <div class="formElementWrapper">
+                            <input id="f1" class="formField" type="password" name="password" placeholder="password"/>
+                        </div>
+                        <input id="submitButton" type="submit" value="login"/>
+                    </form>
+                    <!--sction below submit button-->
+                    <div id="help">
+                        <a href id="left">forgot your password?</a>
+                        <a href id="right">don't have an account?</a>
+                    </div>
+                    <div id="console">
+                       <p>Server Responses here:</p> 
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script>
+        var formEmail = document.getElementById('f0');
+        var formPassword = document.getElementById('f1');
+        var con = document.getElementById("console");
+
+        document.getElementById('submitButton').addEventListener('click', function() {
+            var request = new XMLHttpRequest();
+            request.open('POST', '/auth', true);
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            request.onload = function() {
+                console.log(this.response);
+                if (this.status >= 200 && this.status < 400 && this.readyState == 4) {
+                    // Success!
+                    var resp = this.response;
+                    con.innerHTML += "<p>" + resp.message + "</p><br>";
+                    console.log(resp);
+                // nextFunctionExample(response);
+                } else {
+                    // We reached our target server, but it returned an error like password incorrect
+                    con.innerHTML += "<p>" + resp.error + "</p><br>";
+                    console.log(this.response);
+                }
+            };
+
+            request.onerror = function() {
+                // There was a connection error of some sort like server not found
+            };
+
+            var dataToSend = JSON.stringify({
+                email: formEmail.value,
+                password: formPassword.value
+            });
+
+            request.send(dataToSend);
+        });
+
+    </script>
+</html>

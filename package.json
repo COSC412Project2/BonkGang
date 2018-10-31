@@ -1,0 +1,29 @@
+{
+  "name": "bonkgang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/COSC412Project2/BonkGang.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/COSC412Project2/BonkGang/issues"
+  },
+  "homepage": "https://github.com/COSC412Project2/BonkGang#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cryptr": "^4.0.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
+    "mysql": "^2.16.0",
+    "path": "^0.12.7",
+    "sse-nodejs": "^0.1.0"
+  }
+}
