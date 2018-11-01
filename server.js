@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const authenticateController=require('./controllers/authenticate-controller');
 const registerController=require('./controllers/register-controller');
+const moment = require('moment');
 
 //misc express config
 const app = express();
@@ -22,27 +23,32 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + "/views/index.html"); 
 })
 
-//REGISTRATION PAGE
+//registration page
 app.get('/register', function(req,res){
     res.sendFile(__dirname + "/views/register.html");
-})
+});
 
 //Registration POST request, send req to REGISTRATIONCONTROLLER and change res based on results
 app.post('/register', function(req,res){
-    registerController.register(req,res, function(code, msg){
+    registerController.register(req,res, function(code){
         res.set("Content-type", "application/json");
+        switch (code){
+            case 0 : res.status(500).json({"code" : "0", "message" : "SQL Query Error"});break;
+            case 1 : res.status(200).json({"code" : "1", "message" : "User successfully Registered"});break;
+            case 2 : res.status(400).json({"code" : "2", "message" : "Email already registerd"});break;
+        }
     })
 });
 
 //Authentication POST request, Send req to AUTHENTICATECONTROLLER and change res based on results
 app.post('/auth',function(req,res){
-    authenticateController.authenticate(req,res, function(auth){
+    authenticateController.authenticate(req,res, function(code){
         res.set("Content-type", "application/json");
-        switch(auth){
-            case 0 : res.json({"code" : "0", "message" : "SQL Query Error"});break;
-            case 1 : res.json({"code" : "1", "message" : "User successfully authenticated"});break;
-            case 2 : res.json({"code" : "2", "message" : "incorrect password"});break;
-            case 3 : res.json({"code" : "3", "message" : "no such email found"});break;
+        switch(code){
+            case 0 : res.status(500).json({"code" : "0", "message" : "SQL Query Error"});break;
+            case 1 : res.status(200).json({"code" : "1", "message" : "User successfully authenticated"});break;
+            case 2 : res.status(400).json({"code" : "2", "message" : "incorrect password"});break;
+            case 3 : res.status(400).json({"code" : "3", "message" : "no such email found"});break;
         }
     });
 });
@@ -50,7 +56,6 @@ app.post('/auth',function(req,res){
 //PORT
 app.listen(PORT, function(){
     var date = new Date();
-    console.log(date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() +
-    '.' + date.getMilliseconds() + ' ' + date.toDateString() + 
+    console.log(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss') + 
     ": server listening on port " + PORT +"\n");
 })

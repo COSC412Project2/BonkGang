@@ -17,7 +17,7 @@
         <section>
             <div class="container">
                 <div id="logoBox">
-                    <img src="../img/b.png">
+                    <a href='/' ><img src="../img/b.png"></a>
                     <p>bonk gang, baby</p>
                 </div>
                 <div id="loginBox">
@@ -44,44 +44,5 @@
             </div>
         </section>
     </body>
-    <script>
-        //script to send request to server and handle response
-        var formEmail = document.getElementById('f0');
-        var formPassword = document.getElementById('f1');
-        var con = document.getElementById("console");
-
-        //event listener for submit button click
-        document.getElementById('submitButton').addEventListener('click', function() {
-            var request = new XMLHttpRequest();
-            
-            request.onload = function() {
-                if (this.status >= 200 && this.status < 400 && this.readyState == 4) {
-                    // Success!
-                    var resp = JSON.parse(this.response);
-                    con.innerHTML += "<p>" + resp.message + "</p><br>";
-                } else {
-                    // We reached our target server, but it returned an error like password incorrect
-                    con.innerHTML += "<p>" + this.response.error + "</p><br>";
-                    console.log(this.response);
-                }
-            };
-
-            request.onerror = function(error) {
-                // There was a connection error of some sort like server not found
-                console.log("request error: " + error);
-            };
-
-            //open request
-            request.open('POST', '/auth', true);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-            //data to send
-            var dataToSend = JSON.stringify({
-                email: formEmail.value,
-                password: formPassword.value
-            });
-            //send it
-            request.send(dataToSend);
-        });
-    </script>
+    <script src="../script/login.js"></script>
 </html>
