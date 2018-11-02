@@ -26,7 +26,7 @@ module.exports.register=function(req,res, callback){
   console.log("hashed password:\t" + user.password + "\n");
 
 
-  var isDuplicate = true;
+  //var isDuplicate = true;
   //check first if the email is already registered
   mysql_query("SELECT * FROM users WHERE email = ?", user.email, function(error, results){
     if (error) { //return error message
@@ -39,20 +39,19 @@ module.exports.register=function(req,res, callback){
     }
     else if(results.length == 0){
       console.log("Result: no such email found, proceeding to register");
-      isDuplicate = false;
+      //isDuplicate = false;
+      //query used to insert a new user into the database 
+      mysql_query('INSERT INTO users SET ?',user, function (error, results) {
+        if (error) {
+          callback(0);
+          console.log(error);
+        }else{
+          callback(1);
+          console.log("Result: user successfully registered\n")
+        }
+      });
     }
   });
 
-  if(!isDuplicate){
-    //query used to insert a new user into the database 
-    mysql_query('INSERT INTO users SET ?',user, function (error, results) {
-      if (error) {
-        callback(0);
-        console.log(error);
-      }else{
-        callback(1);
-        console.log("Result: user successfully registered\n")
-      }
-    });
-  }
+    
 }
