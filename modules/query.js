@@ -1,6 +1,6 @@
 // Dependencies
 var mysql   = require('mysql'),
-    config  = require("./config");
+    config  = require("../config");
 
 /*
  * @sqlConnection

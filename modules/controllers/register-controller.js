@@ -1,4 +1,4 @@
-var mysql_query = require('../modules/query');
+var mysql_query = require('../query');
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
 //sets the register time stamp and encrypts password 

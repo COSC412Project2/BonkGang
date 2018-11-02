@@ -1,8 +1,8 @@
 //requires
 const express = require("express");
 const bodyParser = require('body-parser');
-const authenticateController=require('./controllers/authenticate-controller');
-const registerController=require('./controllers/register-controller');
+const authenticateController=require('./modules/controllers/authenticate-controller');
+const registerController=require('./modules/controllers/register-controller');
 const moment = require('moment');
 
 //misc express config
