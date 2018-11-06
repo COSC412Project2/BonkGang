@@ -1,7 +1,11 @@
+/*create schema, delete existing one if already exists*/
 DROP SCHEMA IF EXISTS mydb ;
 
 CREATE SCHEMA IF NOT EXISTS mydb DEFAULT CHARACTER SET utf8;
 USE mydb;
+
+/*Delete users tables if exists and create new one with proper columns and datatypes*/
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
 	id INT NOT NULL AUTO_INCREMENT,
