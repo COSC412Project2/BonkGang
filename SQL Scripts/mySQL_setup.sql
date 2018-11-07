@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS pending_resets;
 
 CREATE TABLE pending_resets(
     email VARCHAR(255) NOT NULL,
-    code VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     PRIMARY KEY (email)
 );

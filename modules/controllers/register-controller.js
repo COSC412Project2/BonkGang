@@ -2,7 +2,7 @@ var mysql_query = require('../query');
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
 //sets the register time stamp and encrypts password 
-module.exports.register=function(req,res, callback){
+module.exports = function(req,res, callback){
   //verify email is in email format
 
   //verify password meets requirements

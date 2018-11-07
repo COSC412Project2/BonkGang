@@ -1,4 +1,3 @@
-console.log("login.js");
 //script to send request to server and handle response
 var formEmail = document.getElementById('f0');
 var formPassword = document.getElementById('f1');
