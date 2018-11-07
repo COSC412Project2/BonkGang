@@ -8,11 +8,19 @@ USE mydb;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
-	id INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL,
     password CHAR(60) NOT NULL,
     name VARCHAR(255) NULL,
     created_at TIMESTAMP NULL,
     updated_at TIMESTAMP NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (email)
+);
+
+/*Table for pending password reset requests*/
+DROP TABLE IF EXISTS pending_resets;
+
+CREATE TABLE pending_resets(
+    email VARCHAR(255) NOT NULL,
+    code VARCHAR(255) NOT NULL,
+    PRIMARY KEY (email)
 );
