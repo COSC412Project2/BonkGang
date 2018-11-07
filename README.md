@@ -1,8 +1,8 @@
-#Bonk Gang Webpage
+# Bonk Gang Webpage
 
 ## First time set up
 * [install node.js](https://nodejs.org/en/)
-* [install MySQL server and workbench](https://dev.mysql.com/downloads/installer/) [^1]
+* [install MySQL server and workbench](https://dev.mysql.com/downloads/installer/)
 * edit **config.json** to set mySQL credentials
 * `npm install` to install dependencies
 * run **mySQL_setup.sql** from mySQL workbench
