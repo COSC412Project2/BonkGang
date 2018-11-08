@@ -1,6 +1,6 @@
 var mysql_query = require('../query');
 
-module.export = function(token, callback){
+module.exports = function(token, callback){
     //ADD TIMESTAMP CONSOLE LOG THING
 
     

@@ -1,3 +1,44 @@
-<HTML>
-    <h1>resetRequest.html</h1>
-</HTML>
+<!DOCTYPE html>
+<html lang="en-US">
+
+    <!-- Meta Data -->
+    <head>
+        <title>Bonk Gang | Log-in</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Bonk Gang Log-in">
+        <meta name="author" content="Bonk Gang">
+        <link rel="stylesheet" type="text/css" href="../styles/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    </head>
+
+    <!--Page Contents-->
+    <body>
+        <section>
+            <div class="container">
+                <div id="logoBox">
+                    <a href='/' ><img src="../img/b.png"></a>
+                    <p>bonk gang, baby</p>
+                </div>
+                <div id="loginBox">
+                    <p id="welcome">Enter your email to receive a reset link</p>
+                    <!--Back-end guys will use this form to get user input-->
+                    <form id="loginForm" onsubmit="return false">
+                        <div class="formElementWrapper">
+                            <input id="f0" class="formField" type="text" name="email" placeholder="email"/>
+                        </div>
+                        <input id="submitButton" type="submit" value="Send reset link"/>
+                    </form>
+                    <!--sction below submit button-->
+                    <div id="help">
+                        <a href="/register">don't have an account? Register!</a>
+                    </div>
+                    <div id="console">
+                        <p>Response:</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="../script/resetreq.js"></script>
+</html>
