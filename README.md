@@ -18,6 +18,6 @@ issue with MySQL authentication when the server tried to query the database.
 
 * run **mySQL\_AUTH\_FIX.sql** from mySQL workbench to fix
 
-# Tips when merging 
+## Tips when commiting 
 1. Make sure to not add the node modules folder 
 2. if you do use the command 'git reset'
