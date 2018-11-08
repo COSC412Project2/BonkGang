@@ -18,3 +18,8 @@
 issue with MySQL authentication when the server tried to query the database.
 
 * run **mySQL\_AUTH\_FIX.sql** from mySQL workbench to fix
+
+---
+## DON'T ADD node modules folder
+If you accidently used the command "git add ."
+simply use "git reset" and then only add the changed files
