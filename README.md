@@ -21,5 +21,6 @@ issue with MySQL authentication when the server tried to query the database.
 
 ---
 ## DON'T ADD node modules folder
-If you accidently used the command "git add ."
-simply use "git reset" and then only add the changed files
+If you accidently used the command **"git add ."**
+
+simply use **"git reset"** and then only add the changed files
