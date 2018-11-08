@@ -2,9 +2,9 @@ var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var mysql_query = require('../query');
 var moment = require('moment');
+var isPendingRequest = require ('./isPendingReq');
 
-module.exports = function(req, res, callback) {  
-  
+module.exports = function(req, res, callback) {
     //user input (email to be reset)
     var email = req.body.email;
 
@@ -52,34 +52,28 @@ module.exports = function(req, res, callback) {
         }else if(results.length >0){
             //found a matching email in USERS TABLE
             //check if already in PENDING_RESETS TABLE
-            var isPendingAlready = true;
-            mysql_query("SELECT * FROM pending_resets WHERE email = ?", email, function(err, results){
-                if(err) throw err;
-                else if(results.length == 0){
-                    isPendingAlready = false;
+            isPendingRequest(email, function(status){
+                if(status){
+                    callback(3);
                 }
-                else console.log("already a pending reset request for " + email); callback(3);
-            });
-            //add the email + token to PENDING_RESETS TABLE
-            if(!isPendingAlready){
-                mysql_query("INSERT INTO pending_resets SET ?", insert_me, function(err, res){
-                    if(err) throw err;
-                    console.log("Email and token inserted successfully");
-
-                    //Send the email
-                    console.log("Result: sending email reset code to: " + email + "\n");
-                    smtpTransport.sendMail(mailOptions, function(err) {
-                        if(err) throw err;               
-                        console.log("Email successfully sent to: " + email);
-                        callback(1);
+                else{
+                    mysql_query("INSERT INTO pending_resets SET ?", insert_me, function(err, res){
+                        if(err) throw err;
+                        console.log("Email and token inserted successfully");
+                        //Send the email
+                        console.log("Result: sending email reset code to: " + email + "\n");
+                        smtpTransport.sendMail(mailOptions, function(err) {
+                            if(err) throw err;               
+                            console.log("Email successfully sent to: " + email);
+                            callback(1);
+                        });
                     });
-                }); 
-            }
-            
+                }
+            });
         }
         else if(results.length == 0){
-        console.log("Result: no such email found, cant reset password");
-        callback(2);
+            console.log("Result: no such email found, cant reset password");
+            callback(2);
         }
     });
 }  

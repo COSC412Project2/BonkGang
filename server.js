@@ -79,15 +79,17 @@ app.post('/auth',function(req,res){
 
 //reset password POST for opening a request 
 app.post('/resetrequest', function(req,res){
+    callback = false;
     forgotpassword(req,res, function(code){
+        callback = true;
         res.set("Content-type", "application/json");
         switch(code){
             case 0 : res.status(500).json({"code" : "0", "message" : "Server error"});break;
             case 1 : res.status(200).json({"code" : "1", "message" : "Password reset email sent"});break;
             case 2 : res.status(400).json({"code" : "2", "message" : "Email does not match any existing records"});break;
             case 3 : res.status(400).json({"code" : "3", "message" : "Already a pending reset request for that email"});break;
-        }
-    })
+        } 
+    });
 });
 
 app.post('/changepass', function(req,res){

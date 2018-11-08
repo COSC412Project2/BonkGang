@@ -1,8 +1,9 @@
 var mysql_query = require('../query');
+var bcrypt = require('bcrypt');
 
 module.exports = function(token, callback){
     //ADD TIMESTAMP CONSOLE LOG THING
-
+    check_token = bcrypt.hashSync(token);
     
     //query db for token
     mysql_query("SELECT * FROM pending_resets WHERE token = ?", token, function(err, results){

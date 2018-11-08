@@ -12,7 +12,6 @@
 1. run `node server.js` on server
 2. browse to **127.0.0.1:8080**
 
----
 ## errors
 ### `ER_NOT_SUPPORTED_AUTH_MODE:`
 issue with MySQL authentication when the server tried to query the database.
