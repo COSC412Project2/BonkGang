@@ -3,7 +3,7 @@ var mysql_query = require('../query');
 var moment = require('moment');
 
 //making sure the user has an account with email and password
-module.exports.authenticate=function(req,res, callback){
+module.exports = function(req,res, callback){
   //store req vars
   var email = req.body.email;
   var password = req.body.password;
