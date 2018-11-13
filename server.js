@@ -102,4 +102,5 @@ app.listen(PORT, function(){
     var date = new Date();
     console.log(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss') + 
     ": server listening on port " + PORT +"\n");
+    console.log('link => http://localhost:'+PORT+'/')
 })
