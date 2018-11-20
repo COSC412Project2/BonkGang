@@ -2,7 +2,17 @@ body{
     margin: 0;
     padding: 0;
 }
+.column {
+    float: left;
+    width: 33.33%;
+}
 
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 #Eagle{
     height: 100vh;
     width: 100%;
@@ -14,7 +24,7 @@ body{
     font-size: 400%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
-    padding:80px 0;
+    padding:80px 50px;
     margin-left:15px;
 	margin-bottom:10px;
  }
@@ -32,15 +42,25 @@ body{
 a{
     text-decoration: none;
 }
-#info{
-    background-color: beige;
-    height: 100vh;
+.row{
+    background-color:beige;
+    height: 65vh;
     width: 100%;
     background-size: cover;
 }
+#pic1{
+    position: absolute;
+    right: 10%;
+    top:137%;
+}
+#pic2{
+    position: absolute;
+    left: 10%;
+    top:137%;
+}
 #links{
     background-color: white;
-    height: 100vh;
+    height: 65vh;
     width: 100%;
     background-size: cover;
 }
@@ -135,18 +155,18 @@ a{
 .line1.active {
   transform: rotate(270deg);
   opacity:0.0;
-  background-color:yellow;
+  background-color:red;
   top:5px;
 }
 
 .line2.active {
   transform: rotate(45deg);
-  background-color:yellow;
+  background-color:red;
 }
 
 .line3.active {
   transform: rotate(-45deg);
-  background-color:yellow;
+  background-color:red;
   top:-7px;
 }
 
