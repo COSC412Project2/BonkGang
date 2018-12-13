@@ -21,17 +21,13 @@
                     <p>bonk gang, baby</p>
                 </div>
                 <div id="loginBox">
-                    <p id="welcome">welcome back, baby</p>
+                    <p id="welcome">Enter your email to receive a reset link</p>
                     <!--Back-end guys will use this form to get user input-->
                     <form id="loginForm" onsubmit="return false">
                         <div class="formElementWrapper">
                             <input id="f0" class="formField" type="text" name="email" placeholder="email"/>
                         </div>
-                        <div class="formElementWrapper">
-                            <input id="f1" class="formField" type="password" name="password" placeholder="password"/>
-                        </div>
-                        <a href="/forgot" id="forgot">forgot your password?</a>
-                        <input id="submitButton" type="submit" value="login"/>
+                        <input id="submitButton" type="submit" value="Send reset link"/>
                     </form>
                     <!--sction below submit button-->
                     <div id="help">
@@ -44,5 +40,5 @@
             </div>
         </section>
     </body>
-    <script src="../script/login.js"></script>
+    <script src="../script/resetreq.js"></script>
 </html>

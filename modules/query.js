@@ -6,7 +6,7 @@ var mysql   = require('mysql'),
  * @sqlConnection
  * Creates the connection, makes the query and close it to avoid concurrency conflicts.
  */
-var sqlConnection = function sqlConnection(sql, values, next) {
+module.exports = function sqlConnection(sql, values, next) {
 
     // It means that the values hasnt been passed
     if (arguments.length === 2) {
@@ -30,5 +30,3 @@ var sqlConnection = function sqlConnection(sql, values, next) {
         next.apply(this, arguments);
     });
 }
-
-module.exports = sqlConnection;

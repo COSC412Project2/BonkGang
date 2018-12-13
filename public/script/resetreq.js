@@ -1,6 +1,5 @@
 //script to send request to server and handle response
 var formEmail = document.getElementById('f0');
-var formPassword = document.getElementById('f1');
 var con = document.getElementById("console");
 
 //event listener for submit button click
@@ -26,13 +25,12 @@ document.getElementById('submitButton').addEventListener('click', function() {
     };
 
     //open request
-    request.open('POST', '/auth', true);
+    request.open('POST', '/resetrequest', true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
     //data to send
     var dataToSend = JSON.stringify({
         email: formEmail.value,
-        password: formPassword.value
     });
     //send it
     request.send(dataToSend);
