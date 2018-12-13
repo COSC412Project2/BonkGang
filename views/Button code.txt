@@ -1,0 +1,44 @@
+ <!-- <div id="button"><a class="button" href="register.html">REGISTER</a></div> <div id="button2">LOGIN</div> -->
+
+/* #button{
+    background:  transparent;
+    height:  38px;
+    line-height:  40px;
+    border:  2px solid white;
+    display:  inline-block;
+    float:  none;
+    text-align:  center;
+    width:  120px;
+    padding:  0px!important;
+    font-size:  14px;
+    color:  #fff;
+    position:absolute;
+    transition: .5s ease;
+    top: 0%;
+    left: 80%;
+}
+#button:hover  {
+    color:  #fff;
+    background:  rgba(255, 255, 255, 0.2);
+}
+#button2{
+    background:  transparent;
+    height:  38px;
+    line-height:  40px;
+    border:  2px solid white;
+    display:  inline-block;
+    float:  none;
+    text-align:  center;
+    width:  120px;
+    padding:  0px!important;
+    font-size:  14px;
+    color:  #fff;
+    position:absolute;
+    transition: .5s ease;
+    top: 0%;
+    left: 90%;
+}
+#button2:hover{
+    color:  #fff;
+    background:  rgba(255, 255, 255, 0.2);
+} */
