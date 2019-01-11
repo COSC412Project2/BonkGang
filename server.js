@@ -6,6 +6,7 @@ const registerController=require('./modules/controllers/register-controller');
 const forgotpassword = require('./modules/resetpass/resetPasswordRequest');
 const moment = require('moment');
 const isValidToken = require("./modules/resetpass/isValidResetToken");
+const changePass= require("./modules/resetpass/changePass");
 
 //misc express config
 const app = express();
@@ -23,7 +24,7 @@ const PORT = 8080;
 //====================ROUTING===================================
 //DEFAULT LOGIN PAGE
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/views/index.html"); 
+    res.sendFile(__dirname + "/views/mock.html"); 
 })
 
 //registration page
@@ -36,6 +37,14 @@ app.get('/forgot', function(req,res){
     res.sendFile(__dirname + "/views/resetrequest.html");
 });
 
+app.get('/form', function(req, res){
+    res.sendFile(__dirname + "/views/form.html");
+});
+
+app.get('/login', function(req, res){
+    res.sendFile(__dirname + "/views/index.html");
+})
+
 //once user follows email link, they are sent here
 app.get('/reset/:token', function(req,res){
     //check if valid token
@@ -46,10 +55,6 @@ app.get('/reset/:token', function(req,res){
             case 1: res.render("resetpass", {email});break;
         }
     });
-});
-
-app.get('/jade_test/:id', function(req,res){
-    res.render("test", {data : [req.params.id]});
 });
 
 //Registration POST request, send req to REGISTRATIONCONTROLLER and change res based on results
@@ -93,8 +98,15 @@ app.post('/resetrequest', function(req,res){
 });
 
 app.post('/changepass', function(req,res){
-    console.log("POST: '/changepass' recieved: \n" + req.body.email + " " + req.body.password);
-    res.status(200).json({"message" : "recieved"});
+    var email = req.body.email;
+    var pass = req.body.password;
+    console.log("POST: '/changepass' recieved: \n" + email + " " + pass);
+    changePass(email, pass, function(status){
+       switch(status){
+           case 0: res.status(500).json({"message" : "could not change password, sorry"});break;
+           case 1: res.status(200).json({"message" : "password changes successfully"});break;
+       }
+    });
 });
 
 //PORT
